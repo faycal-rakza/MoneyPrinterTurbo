@@ -17,6 +17,9 @@ jobs:
     - name: Create config.toml
       run: echo "${{ secrets.CONFIG_TOML }}" > config.toml
 
+    - name: Verify config.toml content
+      run: cat config.toml
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
