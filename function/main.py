@@ -14,7 +14,7 @@ from google.auth.transport import requests as google_requests
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-api_base_url = os.getenv("API_URL")
+api_base_url = os.getenv("API_URL")+"/api/v1"
 headers = {"Content-Type": "application/json"}
 
 video_subject = os.getenv("VIDEO_SUBJECT")
