@@ -1,5 +1,4 @@
-x-common-volumes: &common-volumes
-  - ./:/MoneyPrinterTurbo
+version: '3.8'
 
 services:
   api:
@@ -10,5 +9,6 @@ services:
     ports:
       - "8080:8080"
     command: [ "python3", "main.py" ]
-    volumes: *common-volumes
+    volumes:
+      - ./:/MoneyPrinterTurbo
     restart: always
