@@ -49,14 +49,14 @@ def get_cloud_run_token():
 @functions_framework.http
 def main(request=None):
     print("api url:" + api_base_url)
-    upload_music_url = f"{api_base_url}/musics"
-    files = {'file': open(song_file_path, 'rb')}
+    #upload_music_url = f"{api_base_url}/musics"
+    #files = {'file': open(song_file_path, 'rb')}
 
     # Get the Cloud Run token
     token = get_cloud_run_token()
     headers["Authorization"] = f"Bearer {token}"
 
-    try:
+    """try:
         response = requests.post(upload_music_url, files=files, headers=headers)
         response.raise_for_status()
         bgm_file = response.json()['data']['file']
@@ -65,7 +65,7 @@ def main(request=None):
         return f"Error uploading music: {e}", 500
     except json.JSONDecodeError as e:
         logger.error(f"Error decoding JSON response from music  upload: {e}")
-        return "Error decoding JSON response from music upload", 500
+        return "Error decoding JSON response from music upload", 500"""
 
     try:
         generate_script_url = f"{api_base_url}/scripts"
