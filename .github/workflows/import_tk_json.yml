@@ -17,14 +17,3 @@ jobs:
           JSON_FILENAME: ${{ vars.JSON_FILENAME }}
         run: |
           echo "TK_COOKIES_JSON" > function/$JSON_FILENAME
-  recreate-function:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout du repo
-        uses: actions/checkout@v3
-
-      - name: Recreate function with variables
-        env:
-          API_URL: ${{ vars.API_URL }}
-        run: |
-          echo "API_URL = '$API_URL'" > function/function.py
