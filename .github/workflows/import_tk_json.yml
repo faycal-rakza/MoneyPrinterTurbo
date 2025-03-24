@@ -17,3 +17,14 @@ jobs:
           JSON_FILENAME: ${{ vars.JSON_FILENAME }}
         run: |
           echo "TK_COOKIES_JSON" > function/$JSON_FILENAME
+  recreate-config:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du repo
+        uses: actions/checkout@v3
+
+      - name: Recreate config.toml
+        env:
+          SECRET_CONFIG_TOML: ${{ secrets.CONFIG_TOML }}
+        run: |
+          echo "${{ secrets.CONFIG_TOML }}" > config.toml
