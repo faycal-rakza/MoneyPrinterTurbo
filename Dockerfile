@@ -29,8 +29,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Now copy the rest of the codebase into the image
 COPY . .
 
-COPY config.toml .
-
 # Expose the port the app runs on
 EXPOSE 8080
 
