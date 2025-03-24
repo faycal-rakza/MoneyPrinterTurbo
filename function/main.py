@@ -118,7 +118,7 @@ def main(request=None):
             "voice_volume": speech_volume,
             "voice_rate": speech_rate,
             "bgm_type": "custom",
-            "bgm_file": bgm_file,
+            #"bgm_file": bgm_file,
             "bgm_volume": bgm_volume,
             "subtitle_enabled": False,
         }
