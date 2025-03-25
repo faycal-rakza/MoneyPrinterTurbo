@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Create config.toml
-      run: echo "${{ secrets.CONFIG_TOML }}" | tr -d '\r' > config.toml
+      run: echo "${{ secrets.CONFIG_TOML }}" | base64 -d > config.toml
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
