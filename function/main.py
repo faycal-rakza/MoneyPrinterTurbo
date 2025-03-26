@@ -67,6 +67,8 @@ def main(request=None):
         logger.error(f"Error decoding JSON response from music  upload: {e}")
         return "Error decoding JSON response from music upload", 500"""
 
+    bgm_file = "/MoneyPrinterTurbo/resource/songs/music.mp3"
+
     try:
         generate_script_url = f"{api_base_url}/scripts"
         script_payload = {
@@ -118,7 +120,7 @@ def main(request=None):
             "voice_volume": speech_volume,
             "voice_rate": speech_rate,
             "bgm_type": "custom",
-            #"bgm_file": bgm_file,
+            "bgm_file": bgm_file,
             "bgm_volume": bgm_volume,
             "subtitle_enabled": False,
         }
