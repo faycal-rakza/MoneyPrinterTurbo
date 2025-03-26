@@ -9,6 +9,7 @@ from google.oauth2 import id_token
 from tiktokautouploader import upload_tiktok
 import functions_framework
 from google.auth.transport import requests as google_requests
+import subprocess
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -45,10 +46,20 @@ def get_cloud_run_token():
     token = id_token.fetch_id_token(auth_req, audience)
     return token
 
+def log_command_path(command_name):
+    try:
+        result = subprocess.run(['which', command_name], capture_output=True, text=True, check=True)
+        logger.info(f"{command_name} path: {result.stdout.strip()}")
+    except subprocess.CalledProcessError as e:
+        logger.error(f"Error finding {command_name} path: {e}")
+
 
 @functions_framework.http
 def main(request=None):
     print("api url:" + api_base_url)
+    log_command_path('ffmpeg')
+    log_command_path('convert')
+
     #upload_music_url = f"{api_base_url}/musics"
     #files = {'file': open(song_file_path, 'rb')}
 
