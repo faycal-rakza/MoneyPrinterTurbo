@@ -1,14 +1,9 @@
 import os
-
 import requests
 import json
 import time
 import logging
-
-from google.oauth2 import id_token
 from tiktokautouploader import upload_tiktok
-import functions_framework
-from google.auth.transport import requests as google_requests
 from dotenv import load_dotenv
 
 # Configure logging
@@ -17,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 load_dotenv()
 
-api_base_url = os.getenv("API_URL")+"/api/v1"
+api_base_url = os.getenv("API_URL") + "/api/v1"
 headers = {"Content-Type": "application/json"}
 
 video_subject = os.getenv("VIDEO_SUBJECT")
@@ -41,35 +36,9 @@ song_file_path = "./music.mp3"
 bgm_file_path = "../resource/songs/music.mp3"
 bgm_volume = 0.2
 
-
-def get_cloud_run_token():
-    audience = os.getenv("API_URL")
-    auth_req = google_requests.Request()
-    token = id_token.fetch_id_token(auth_req, audience)
-    return token
-
-@functions_framework.http
-def main(request=None):
+def main():
     print(os.environ)
     print("api url:" + api_base_url)
-
-    #upload_music_url = f"{api_base_url}/musics"
-    #files = {'file': open(song_file_path, 'rb')}
-
-    # Get the Cloud Run token
-    token = get_cloud_run_token()
-    headers["Authorization"] = f"Bearer {token}"
-
-    """try:
-        response = requests.post(upload_music_url, files=files, headers=headers)
-        response.raise_for_status()
-        bgm_file = response.json()['data']['file']
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Error uploading music: {e}")
-        return f"Error uploading music: {e}", 500
-    except json.JSONDecodeError as e:
-        logger.error(f"Error decoding JSON response from music  upload: {e}")
-        return "Error decoding JSON response from music upload", 500"""
 
     bgm_file = "/MoneyPrinterTurbo/resource/songs/music.mp3"
 
@@ -162,3 +131,6 @@ def main(request=None):
         return f"Error uploading to TikTok: {e}", 500
 
     return "Function executed successfully"
+
+if __name__ == "__main__":
+    main()

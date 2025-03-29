@@ -24,3 +24,5 @@ node_modules
 /models/
 ./models/*
 /function/.venv/
+/function/.env
+/.env
